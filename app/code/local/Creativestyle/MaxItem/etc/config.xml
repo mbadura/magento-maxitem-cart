@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Creativestyle_MaxItem>
+      <version>1.0.0</version>
+      <final>true</final>
+    </Creativestyle_MaxItem>
+  </modules>
+  <global>
+    <helpers>
+      <maxitem>
+        <class>Creativestyle_MaxItem_Helper</class>
+      </maxitem>
+    </helpers>
+	<models>
+	  <maxitem>
+		<class>Creativestyle_MaxItem_Model</class>
+		<resourceModel>maxitem_mysql4</resourceModel>
+	  </maxitem>
+	</models>
+    <events>
+	  <sales_quote_save_before> <!-- identifier of the event we want to catch -->
+        <observers>
+          <Creativestyle_MaxItem> <!-- identifier of the event handler -->
+            <class>Creativestyle_MaxItem_Model_Observer</class> <!-- observers class alias -->
+            <method>checkProductQty</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </Creativestyle_MaxItem>
+        </observers>
+      </sales_quote_save_before>
+    </events>
+  </global>
+</config>
+
